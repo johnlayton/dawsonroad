@@ -1,0 +1,25 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2.1'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile(
+            "com.google.guava:guava:19.0",
+    )
+    testCompile(
+            'junit:junit:4.12',
+            'org.assertj:assertj-core:3.2.0',
+            'com.tngtech.java:junit-dataprovider:1.10.0'
+    )
+}
