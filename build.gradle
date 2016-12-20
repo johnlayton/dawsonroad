@@ -2,6 +2,17 @@ task wrapper(type: Wrapper) {
     gradleVersion = '3.2.1'
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+    }
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -9,6 +20,7 @@ repositories {
 
 apply plugin: "java"
 apply plugin: "idea"
+apply plugin: 'com.github.johnrengelman.shadow'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -22,4 +34,17 @@ dependencies {
             'org.assertj:assertj-core:3.2.0',
             'com.tngtech.java:junit-dataprovider:1.10.0'
     )
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'au.com.afl.Circle'
+    }
+}
+
+shadowJar {
+    mergeServiceFiles()
+
+    exclude "META-INF/*.DSA"
+    exclude "META-INF/*.RSA"
 }
