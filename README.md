@@ -1,3 +1,9 @@
+Minimum requirements;
+
+```
+Java 8, Git
+```
+
 Clone repo;
 
 ```
