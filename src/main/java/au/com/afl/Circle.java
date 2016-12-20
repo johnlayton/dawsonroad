@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class Circle {
@@ -12,22 +13,23 @@ class Circle {
 
     public Circle(final int players) {
         Preconditions.checkArgument(players > 1);
+
         this.players = players;
     }
 
     public static void main(final String... args) {
         Preconditions.checkArgument(args.length == 2);
+
         final int players = Integer.parseInt(args[0]);
-        final int count = Integer.parseInt(args[2]);
+        final int count = Integer.parseInt(args[1]);
 
         final Result result = new Circle(players).play(count);
 
         System.out.println(String.format("Winner = %d, Losers = %s",
-                                         result.getWinner(), IntStream.of(result.getLosers())));
+                                         result.getWinner(), IntStream.of(result.getLosers()).boxed().collect(Collectors.toList())));
     }
 
     public Result play(final int count) {
-
         Preconditions.checkArgument(count > 0);
 
         final List<Integer> eliminated = new ArrayList<>();
