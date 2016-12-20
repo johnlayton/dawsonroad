@@ -28,6 +28,6 @@ Build shadow jar;
 Run application;
 
 ```
-java -jar ./build/libs/dawsonroad-all.jar 10 17
+java -jar ./build/libs/dawsonroad-all.jar <players> <count>
 ```
 
